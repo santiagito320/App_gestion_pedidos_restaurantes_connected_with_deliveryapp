@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="8dp"
+
+    app:cardPreventCornerOverlap="true"
+    >
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/roundedImageView_tipoentrega"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            app:riv_corner_radius="8dp"
+            android:layout_marginTop="8dp"
+            app:riv_oval="true"
+            android:tint="@color/colorBlack"
+            app:riv_mutate_background="true"
+            android:padding="8dp"
+            android:background="@color/colorGrayLigth"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_shopping_basket_24"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <TextView
+            android:id="@+id/txt_ubicacion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="no especificado*"
+            android:textColor="@color/colorBlack"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/txt_state"
+            app:layout_constraintStart_toEndOf="@+id/roundedImageView_tipoentrega"
+            app:layout_constraintTop_toTopOf="@+id/roundedImageView_tipoentrega"
+            app:layout_constraintVertical_chainStyle="spread_inside" />
+
+        <TextView
+            android:id="@+id/txt_state"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:drawableStart="@drawable/ic_baseline_warning_24"
+            android:drawablePadding="4dp"
+            android:text="estado no especificado*"
+            app:layout_constraintBottom_toBottomOf="@+id/roundedImageView_tipoentrega"
+            app:layout_constraintStart_toStartOf="@+id/txt_ubicacion"
+            app:layout_constraintTop_toBottomOf="@+id/txt_ubicacion" />
+
+        <TextView
+            android:id="@+id/txt_expirationCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:drawableStart="@drawable/ic_baseline_timer_24"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="0:00"
+            android:textColor="#EF5350"
+            android:visibility="gone"
+            app:drawableTint="#EF5350"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_pagoTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:inputType="number"
+            android:text="$ 0.00"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorGrayLigth"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_state" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

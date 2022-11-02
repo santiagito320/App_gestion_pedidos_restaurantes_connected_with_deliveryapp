@@ -1,0 +1,84 @@
+{
+  "project_info": {
+    "project_number": "449202795650",
+    "project_id": "granaditos-pizza",
+    "storage_bucket": "granaditos-pizza.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449202795650:android:35589fbe3cc77fe315309b",
+        "android_client_info": {
+          "package_name": "com.businessapp.restaurantorders"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449202795650-e1lg4lp3dmcob44o64ss0mdab9o6dcdl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.businessapp.restaurantorders",
+            "certificate_hash": "95149a549c009f99f4e4f4e409a4a7c60a2484d8"
+          }
+        },
+        {
+          "client_id": "449202795650-gntmjvkdc8fb0bhaocp8f1nt8ns3j2lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9HAHIf5LFVimFng6yD5xq77xtI7Tq0s0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449202795650-gntmjvkdc8fb0bhaocp8f1nt8ns3j2lm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:449202795650:android:bf8bb465e2f9daaf15309b",
+        "android_client_info": {
+          "package_name": "com.josecarlos.granaditospizza"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "449202795650-fj5bp4q6lsc1r0pmbc0cdh9om8l2prt8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.josecarlos.granaditospizza",
+            "certificate_hash": "95149a549c009f99f4e4f4e409a4a7c60a2484d8"
+          }
+        },
+        {
+          "client_id": "449202795650-gntmjvkdc8fb0bhaocp8f1nt8ns3j2lm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9HAHIf5LFVimFng6yD5xq77xtI7Tq0s0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "449202795650-gntmjvkdc8fb0bhaocp8f1nt8ns3j2lm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
