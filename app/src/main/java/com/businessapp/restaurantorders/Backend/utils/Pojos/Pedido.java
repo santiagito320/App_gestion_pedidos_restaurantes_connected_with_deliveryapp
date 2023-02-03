@@ -16,6 +16,8 @@ public class Pedido {
     private String modo_de_entrega = "Dejar el paquete en conserjeria o en la puerta si es una casa";
     private String owner_firebase_uid = "";
     private long born_timestamp;
+    private String pedidoCancelledMotivo = "Ningún motivo especifico";
+
 
 
     public Pedido(String numero_pedido, String estado, List<Producto> productos, double pago_total, String hora_entrega_estimada, Sucursal sucursal, Destinatario destinatario, String tipo_entrega, String medio_de_pago, String modo_de_entrega) {
@@ -29,6 +31,14 @@ public class Pedido {
         this.tipo_entrega = tipo_entrega;
         this.medio_de_pago = medio_de_pago;
         this.modo_de_entrega = modo_de_entrega;
+    }
+
+    public String getPedidoCancelledMotivo() {
+        return pedidoCancelledMotivo;
+    }
+
+    public void setPedidoCancelledMotivo(String pedidoCancelledMotivo) {
+        this.pedidoCancelledMotivo = pedidoCancelledMotivo;
     }
 
     public String getModo_de_entrega() {

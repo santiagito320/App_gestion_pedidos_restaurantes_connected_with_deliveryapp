@@ -11,6 +11,7 @@ public class Destinatario {
     private int numero_pedidos = 0;
     private String email = "";
     private List<Direccion> direcciones = new ArrayList<>();
+    private String token = "";
 
 
     public Destinatario(String nombre, String apellido, String telefono, int numero_pedidos, String email, List<Direccion> direcciones) {
@@ -21,6 +22,14 @@ public class Destinatario {
         this.numero_pedidos = numero_pedidos;
         this.email = email;
         this.direcciones = direcciones;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Destinatario() {

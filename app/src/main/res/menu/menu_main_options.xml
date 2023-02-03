@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item android:id="@+id/action_pedido_de_prueba"
+        android:title="Generar pedido de prueba"
+        app:showAsAction="never"
+        android:enabled="true"
+
+        />
+
+    <item android:id="@+id/action_borrarpedidos"
+        android:title="Borrar pedidos"
+        app:showAsAction="never"
+        android:enabled="true"
+
+        />
+
+</menu>

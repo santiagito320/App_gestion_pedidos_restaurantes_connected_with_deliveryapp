@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item android:id="@+id/action_cambiarEstado"
+        android:title="Cambiar estado del pedido"
+        app:showAsAction="never"
+        android:enabled="true">
+
+        <menu >
+
+            <item android:id="@+id/action_Cancelar"
+                android:title="Cancelar"
+                android:icon="@drawable/ic_baseline_close_24"
+                android:enabled="true"
+                android:visible="false"
+                />
+
+
+         <group android:id="@+id/group_pedidoStates">
+
+             <item android:id="@+id/action_preparando"
+                 android:title="Preparando"
+                 android:icon="@drawable/ic_baseline_restaurant_24"
+                 android:enabled="true"
+
+                 />
+
+
+             <item android:id="@+id/action_esperando_a_ser_entregado"
+                 android:title="Esperando a ser entregado"
+                 android:icon="@drawable/ic_baseline_call_received_24"
+                 android:enabled="true"
+
+                 />
+
+
+             <item android:id="@+id/action_llego_al_domicilio"
+                 android:title="Llegó al domicilio"
+                 android:icon="@drawable/ic_baseline_location_on_24"
+                 android:enabled="true"
+                 android:visible="false"
+
+                 />
+
+             <item android:id="@+id/action_entregado"
+                 android:title="Entregado"
+                 android:icon="@drawable/ic_baseline_check_24"
+                 android:enabled="true"
+
+                 />
+
+         </group>
+
+        </menu>
+
+    </item>
+
+
+    <item android:id="@+id/action_pedido_de_prueba"
+        android:title="Imprimir"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_print_24"
+        android:enabled="true"
+
+        />
+
+
+    <item android:id="@+id/action_copiar_pedido_al_portapapeles"
+        android:title="Copiar al portapapeles"
+        app:showAsAction="never"
+        android:enabled="true"
+
+        />
+
+</menu>

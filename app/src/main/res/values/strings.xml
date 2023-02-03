@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Restaurant Orders</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Granaditos Pizza Orders</string>
+    <string name="default_notification_channel_id">@string/app_name</string>
+
+
+    <string name="firebase_cloud_messaging_apiKey">AAAAaJaStII:APA91bE7s0-yUVAKQO8jOTDk091e3Nf0VBPvG27ajJeQzDfCOP0nfK5pMNyuC2mU8eoSmelB_aIbb6TBMQuiu4wa--j0utQwH9Z9yC2A4Us2jhtQdyOAzH6hCxEKx5CO0mexqHIyaPz0</string>
 </resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/imgbtn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/color_transparente"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorGrayLigth"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Llame a su cliente para resolver el problema lo más amablemente posible."
+        android:textColor="@color/colorBlack" />
+
+    <Button
+        android:id="@+id/btn_llamar_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/colorOrange"
+        android:drawableStart="@drawable/ic_baseline_phone_24"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/colorWhite"
+        android:fontFamily="monospace"
+        android:padding="8dp"
+        android:text="## ### ### ## ##"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Marque este pedido como rechazado."
+        android:textColor="@color/colorBlack" />
+
+    <Button
+        android:id="@+id/btn_rechazarPedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/edittext_background_strokes_gray"
+        android:drawableStart="@drawable/ic_baseline_close_24"
+        android:drawablePadding="8dp"
+        android:drawableTint="@color/colorRed"
+        android:padding="8dp"
+        android:text="Rechazar pedido"
+        android:textAllCaps="false"
+        android:textColor="@color/colorRed" />
+</LinearLayout>

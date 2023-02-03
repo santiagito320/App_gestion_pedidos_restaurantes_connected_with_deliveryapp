@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout_content_producto_seleccion"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="4dp">
+
+
+    <TextView
+        android:id="@+id/txt_producto_seleccion_nameAndValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="seleccionName: seleccion_opcion_selected"
+        android:textColor="@color/colorGrisOscuro" />
+
+    <TextView
+        android:id="@+id/txt_producto_seleccion_extraCost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="3"
+        android:gravity="end"
+        android:text="+ $0.00"
+        android:textColor="@color/colorGrisOscuro"
+        android:textStyle="bold" />
+</LinearLayout>

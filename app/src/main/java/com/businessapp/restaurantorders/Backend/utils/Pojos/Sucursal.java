@@ -10,6 +10,7 @@ public class Sucursal {
     private Coordenadas coordenadas = new Coordenadas();
     private String imagen_demostrativa_url = "";
     private int radio_de_alcanze_de_pedidos = 3500;
+    private String accessCode = "";
 
 
     public Sucursal(String nombre, Direccion direccion_absoluta, List<String> horarios, Coordenadas coordenadas,String imagen_demostrativa_url,int radio_de_alcanze_de_pedidos) {
@@ -19,6 +20,14 @@ public class Sucursal {
         this.coordenadas = coordenadas;
         this.imagen_demostrativa_url = imagen_demostrativa_url;
         this.radio_de_alcanze_de_pedidos = radio_de_alcanze_de_pedidos;
+    }
+
+    public String getAccessCode() {
+        return accessCode;
+    }
+
+    public void setAccessCode(String accessCode) {
+        this.accessCode = accessCode;
     }
 
     public int getRadio_de_alcanze_de_pedidos() {

@@ -4,8 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Frontend.Fragment_Pedidos">
+    tools:context=".Frontend.Fragments.Fragment_Pedidos">
 
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_main_options"
+        app:subtitle="Local (No especificado)"
+        app:title="Pedidos" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
@@ -16,41 +30,114 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout_pedidos">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorGrayLigth"
-            android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_pedidosNuevos"
+
+            >
+
+
+            <LinearLayout
+                android:id="@+id/linearContent_pedidos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:itemCount="5"
-                tools:listitem="@layout/item_pedido">
+                android:background="@color/colorGrayLigth"
+                android:visibility="gone"
+                android:orientation="vertical">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_pedidosNuevos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_pedido">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:text="Otros"
-                android:textAllCaps="true"
-                android:textStyle="bold" />
+                </androidx.recyclerview.widget.RecyclerView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView_pedidos"
+                <TextView
+                    android:id="@+id/textView_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Otros"
+                    android:textAllCaps="true"
+                    android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_pedidos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="1"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_pedido" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_content_pedidosGone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                tools:itemCount="5"
-                tools:listitem="@layout/item_pedido" />
+                android:elevation="1dp"
+                android:visibility="visible">
 
-        </LinearLayout>
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/lottie_no_orders"
+                    android:layout_width="128dp"
+                    android:layout_height="128dp"
+                    app:layout_constraintBottom_toTopOf="@+id/txt_nohyanadaporaqui"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="false"
+                    app:lottie_url="https://assets9.lottiefiles.com/private_files/lf30_rnizksef.json" />
+
+                <TextView
+                    android:id="@+id/txt_nohyanadaporaqui"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="No hay nada por aqui, todavía"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    android:layout_marginTop="32dp"
+
+                    app:layout_constraintBottom_toTopOf="@+id/textView7"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lottie_no_orders" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Por ahora no tienes que cocinar, ¡pero estate atento!"
+                    android:textColor="@color/colorGrisOscuro"
+                    android:layout_marginTop="8dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_nohyanadaporaqui" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
+
+
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.tabs.TabLayout
@@ -59,7 +146,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+
+    android:orientation="vertical"
+    android:padding="16dp"
+    >
+
+    <View
+        android:id="@+id/view_hider"
+        android:layout_width="48dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_corners_8dp"
+        android:backgroundTint="@color/colorGrayLigth" />
+
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Contacto"
+        android:textColor="@color/colorBlack"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Contactanos para hablar sobre tu pedido"
+        android:textColor="@color/colorBlack" />
+
+    <View
+        android:id="@+id/view12"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorGrayLigth" />
+
+    <LinearLayout
+        android:id="@+id/linear_content_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:tint="@color/text_color_link"
+            app:srcCompat="@drawable/ic_baseline_phone_24" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Llamar"
+            android:textColor="@color/text_color_link" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view16"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorGrayLigth" />
+
+
+</LinearLayout>

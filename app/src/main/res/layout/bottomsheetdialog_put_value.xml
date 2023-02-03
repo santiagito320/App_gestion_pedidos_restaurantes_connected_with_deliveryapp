@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+
+    android:orientation="vertical"
+    android:padding="16dp"
+    >
+
+    <View
+        android:id="@+id/view_hider"
+        android:layout_width="48dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_corners_8dp"
+        android:backgroundTint="@color/colorGrayLigth" />
+
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="Actualizar dato"
+        android:textColor="@color/colorBlack"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_valueHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Actualizar" />
+
+    <EditText
+        android:id="@+id/etxt_valor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edittext_background_1"
+        android:ems="10"
+        android:hint="Sin especificar*"
+        android:padding="8dp" />
+
+    <Button
+        android:id="@+id/btn_guardar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/edittext_background_1"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Guardar"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite" />
+
+
+</LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:padding="32dp">
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorGrayLigth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Ingresa el código de acceso"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etxt_input_access_code"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/edittext_background_1"
+        android:drawableStart="@drawable/ic_baseline_lock_24"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="⚫⚫⚫⚫⚫"
+
+        android:textColor="?attr/colorControlNormal"
+        android:nextFocusDown="@id/btn_acceder"
+        android:inputType="textVisiblePassword"
+        android:maxLength="5"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
+        app:layout_constraintEnd_toEndOf="@+id/divider"
+        app:layout_constraintStart_toStartOf="@+id/divider"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <Button
+        android:id="@+id/btn_acceder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edittext_background_1"
+        android:backgroundTint="@color/colorPrimary"
+        android:padding="8dp"
+        android:text="Acceder"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="@+id/etxt_input_access_code"
+        app:layout_constraintStart_toStartOf="@+id/etxt_input_access_code"
+        app:layout_constraintTop_toBottomOf="@+id/etxt_input_access_code" />
+</androidx.constraintlayout.widget.ConstraintLayout>
