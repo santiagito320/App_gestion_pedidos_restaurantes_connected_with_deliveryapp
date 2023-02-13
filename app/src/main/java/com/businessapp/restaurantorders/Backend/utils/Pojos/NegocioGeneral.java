@@ -20,9 +20,10 @@ public class NegocioGeneral {
     private long tiempo_estimado_en_preparacion_de_pedido_insec = 0;
     private double costo_despacho = 35;
     private String access_code = "";
-    private List<RestauranteServicios> servicios_disponibles = new ArrayList<>();
+    private RestauranteServicios servicios_disponibles;
     private Horarios horarios;
     private double costo_fijo_de_envio_de_productos = 0;
+    private MetodosDePago metodos_de_pago;
 
 
     public NegocioGeneral(String nombre, String facebook_link, String instagram_link, String telefono, String email, List<Sucursal> sucursales, NegocioMenu menu, String app_email, String link_politicasyterminosdecondiciones, long tiempo_estimado_en_preparacion_de_pedido_insec, double costo_despacho, String web_link, String twitter_link) {
@@ -41,6 +42,14 @@ public class NegocioGeneral {
         this.twitter_link = twitter_link;
     }
 
+    public MetodosDePago getMetodos_de_pago() {
+        return metodos_de_pago;
+    }
+
+    public void setMetodos_de_pago(MetodosDePago metodos_de_pago) {
+        this.metodos_de_pago = metodos_de_pago;
+    }
+
     public double getCosto_fijo_de_envio_de_productos() {
         return costo_fijo_de_envio_de_productos;
     }
@@ -57,11 +66,11 @@ public class NegocioGeneral {
         this.horarios = horarios;
     }
 
-    public List<RestauranteServicios> getServicios_disponibles() {
+    public RestauranteServicios getServicios_disponibles() {
         return servicios_disponibles;
     }
 
-    public void setServicios_disponibles(List<RestauranteServicios> servicios_disponibles) {
+    public void setServicios_disponibles(RestauranteServicios servicios_disponibles) {
         this.servicios_disponibles = servicios_disponibles;
     }
 

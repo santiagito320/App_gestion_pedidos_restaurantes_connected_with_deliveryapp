@@ -1,5 +1,6 @@
 package com.businessapp.restaurantorders.Backend.utils.Adapters;
 
+import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
@@ -13,8 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.businessapp.restaurantorders.Backend.utils.Bluetooth.BluetoothPrint;
 import com.businessapp.restaurantorders.Frontend.Activities.Activity_ImpresoraTermicaDetalles;
 import com.businessapp.restaurantorders.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,15 +53,26 @@ public class AdapterListBluetoothDevices extends RecyclerView.Adapter<AdapterLis
         holder.bluetoothDevice = bluetoothDevices.get(position);
         if(holder.bluetoothDevice != null){
             holder.txt_deviceName.setText(holder.bluetoothDevice.getName());
-            holder.txt_connectionStatus.setText(holder.bluetoothDevice.getBondState() == 1 ? "Conectado" : "Desconectado");
+            holder.txt_connectionStatus.setText(holder.bluetoothDevice.getAddress());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(context != null){
                         Toast.makeText(context, "Conectando a "+holder.bluetoothDevice.getName()+"...", Toast.LENGTH_LONG).show();
 
-                        Intent i = new Intent(context, Activity_ImpresoraTermicaDetalles.class);
-                        context.startActivity(i);
+                        //validar si el dispositivo es una impresora
+                        BluetoothPrint bluetoothPrint = new BluetoothPrint(context,context.getResources());
+                        BluetoothClass bluetoothClass = holder.bluetoothDevice.getBluetoothClass();
+                        if(bluetoothClass.getDeviceClass() == BluetoothClass.Device.COMPUTER_HANDHELD_PC_PDA || bluetoothClass.getDeviceClass() == BluetoothClass.Device.COMPUTER_PALM_SIZE_PC_PDA) {
+                            // validar que es una impresora normal o térmica.
+                            bluetoothPrint.openBluetoothPrinter(holder.bluetoothDevice.getUuids()[0].getUuid());
+
+                            Intent i = new Intent(context, Activity_ImpresoraTermicaDetalles.class);
+                            String bluetoothDevide_json = new Gson().toJson(holder.bluetoothDevice);
+                            i.putExtra(bluetoothDevide_json,"BluetoothDevice");
+                            context.startActivity(i);
+                        }
+
                     }
                 }
             });

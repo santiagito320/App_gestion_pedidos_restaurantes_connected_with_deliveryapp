@@ -1,10 +1,13 @@
 package com.businessapp.restaurantorders.Frontend.Activities;
 
+import android.app.ProgressDialog;
+import android.bluetooth.BluetoothDevice;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
@@ -26,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.businessapp.restaurantorders.Backend.Providers.ProviderPedidos;
 import com.businessapp.restaurantorders.Backend.utils.Adapters.AdapterRecyclerView_ProductosBasicView;
+import com.businessapp.restaurantorders.Backend.utils.Bluetooth.BluetoothPrint;
 import com.businessapp.restaurantorders.Backend.utils.Constantes;
 import com.businessapp.restaurantorders.Backend.utils.PedidoUtils;
 import com.businessapp.restaurantorders.Backend.utils.Pojos.Destinatario;
@@ -44,6 +48,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Activity_PedidoConsole extends AppCompatActivity {
     //data.
@@ -85,6 +90,7 @@ public class Activity_PedidoConsole extends AppCompatActivity {
             actionBar.setDisplayShowHomeEnabled(true);
 
         }
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -244,7 +250,7 @@ public class Activity_PedidoConsole extends AppCompatActivity {
             if (destinatario != null) {
 
                 txt_cliente_nombre.setText(destinatario.getNombre());
-                txt_clienteTelefono.setText("+" + destinatario.getTelefono());
+                txt_clienteTelefono.setText(destinatario.getTelefono());
                 txt_cliente_email.setText(destinatario.getEmail());
 
                 Direccion direccion_seleccionada = UtilFunctions.getDireccionSeleccionada(destinatario.getDirecciones());
@@ -521,7 +527,39 @@ public class Activity_PedidoConsole extends AppCompatActivity {
                 menuItem_imprimir.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        Snackbar.make(contentView,"Fuera de servicio",Snackbar.LENGTH_SHORT).show();
+
+                      /**  if(Constantes.bluetoothPrint != null){
+                            if(Constantes.bluetoothPrint.checkConnection()){
+                             //Print.
+
+                                 Constantes.bluetoothPrint.printData(pedido);
+
+                                ProgressDialog progressDialog = ProgressDialog.show(Activity_PedidoConsole.this, "Impresora térmica",
+                                        "Generando recibo de compra...", true);
+
+
+
+                                    new Handler(getMainLooper()).postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            progressDialog.dismiss();
+                                        }
+                                    },5000);
+
+
+                                }else{
+                                //Connnect
+                                Intent i = new Intent(Activity_PedidoConsole.this,Activity_ImpresoraTermicaDetalles.class);
+                                i.putExtra(new Gson().toJson(Constantes.bluetoothPrint),"BluetoothDevice");
+                                startActivity(i);
+                            }
+                        }else{
+                            //go to select bluetooth printers.
+                            Intent i = new Intent(Activity_PedidoConsole.this, Activity_OrdersTermicPrinterConfiguration.class);
+                            startActivity(i);
+                        }**/
+                        Toast.makeText(Activity_PedidoConsole.this, "Disponible para versiones posteriores", Toast.LENGTH_SHORT).show();
+
                         return true;
                     }
                 });

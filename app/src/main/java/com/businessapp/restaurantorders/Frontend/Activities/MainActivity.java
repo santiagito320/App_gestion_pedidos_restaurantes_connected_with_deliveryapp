@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -36,12 +37,15 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
+
 
 
     @Override
@@ -187,11 +191,11 @@ public class MainActivity extends AppCompatActivity {
 
         String document_negocio_name = UtilFunctions.getNegocioCloudFirestoreDocumentName(MainActivity.this);
         if (document_negocio_name != null) {
-            db.collection(FirebaseCloudFirestore_Collections.NEGOCIO).document(document_negocio_name).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            db.collection(FirebaseCloudFirestore_Collections.NEGOCIO).document(document_negocio_name).addSnapshotListener(new EventListener<DocumentSnapshot>() {
                 @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if (documentSnapshot != null) {
-                        NegocioGeneral negocioGeneral = documentSnapshot.toObject(NegocioGeneral.class);
+                public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                    if(value != null){
+                        NegocioGeneral negocioGeneral = value.toObject(NegocioGeneral.class);
                         if (negocioGeneral != null) {
 
                             Constantes.negocio = negocioGeneral;
@@ -199,11 +203,6 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     }
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    e.printStackTrace();
                 }
             });
         }

@@ -1,6 +1,8 @@
 package com.businessapp.restaurantorders.Backend.utils.Bluetooth;
 
+import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
@@ -13,6 +15,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.businessapp.restaurantorders.Backend.utils.Pojos.Pedido;
+import com.businessapp.restaurantorders.Backend.utils.Pojos.Producto;
+import com.businessapp.restaurantorders.R;
+import com.google.common.eventbus.EventBus;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -60,12 +65,12 @@ public class BluetoothPrint {
 
             bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             if (bluetoothAdapter == null) {
-                //  lblPrinterName.setText("No Bluetooth Adapter found");
+                new AlertDialog.Builder(context).setMessage("Dispositivo no disponible para hacer uso de esta funcion!").setIcon(R.drawable.ic_baseline_warning_24).show();
             }
 
             if(bluetoothAdapter != null){
 
-                if (bluetoothAdapter.isEnabled()) {
+                if (!bluetoothAdapter.isEnabled()) {
                     Intent enableBT = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                     context.startActivity(enableBT);
                 }
@@ -78,18 +83,17 @@ public class BluetoothPrint {
                         // My Bluetoth printer name is BTP_F09F1A
                         Log.e("device: ", pairedDev.getName());
 
-                        bluetoothDevices.add(pairedDev);
+                        BluetoothClass bluetoothClass = pairedDev.getBluetoothClass();
+                        if(bluetoothClass.getDeviceClass() == BluetoothClass.Device.COMPUTER_HANDHELD_PC_PDA || bluetoothClass.getDeviceClass() == BluetoothClass.Device.COMPUTER_PALM_SIZE_PC_PDA) {
+                            // el tipo de dispositivo es una impresora termica o normal.
+                            bluetoothDevices.add(pairedDev);
 
-                        if (pairedDev.getName().equals("BlueTooth Printer")) {
-                            bluetoothDevice = pairedDev;
-                            //Toast.makeText(context,"Bluetooth Conectado Correctamente",Toast.LENGTH_LONG).show();
-                            //lblPrinterName.setText("Bluetooth Printer Attached: "+pairedDev.getName());
-                            break;
                         }
+
+
+
                     }
-                    if (bluetoothDevice == null) {
-                        Toast.makeText(context, "No fue posible conectar con la impresora intente de nuevo", Toast.LENGTH_LONG).show();
-                    }
+
 
 
 
@@ -107,12 +111,11 @@ public class BluetoothPrint {
 
     // Open Bluetooth Printer
 
-    public void openBluetoothPrinter() {
+    public void openBluetoothPrinter(UUID uuid) {
         try {
 
             //Standard uuid from string //
-            UUID uuidSting = UUID.fromString("00001101-0000-1000-8000-00805f9b34fb");
-            bluetoothSocket = bluetoothDevice.createRfcommSocketToServiceRecord(uuidSting);
+            bluetoothSocket = bluetoothDevice.createRfcommSocketToServiceRecord(uuid);
             bluetoothSocket.connect();
             outputStream = bluetoothSocket.getOutputStream();
             inputStream = bluetoothSocket.getInputStream();
@@ -191,7 +194,7 @@ public class BluetoothPrint {
     }
 
     // Printing Text to Bluetooth Printer //
-    public void printData(ArrayList<Pedido> arrayList, String fecha, String cliente, String total) {
+    public void printData(Pedido pedido) {
         try {
             // Bold
 

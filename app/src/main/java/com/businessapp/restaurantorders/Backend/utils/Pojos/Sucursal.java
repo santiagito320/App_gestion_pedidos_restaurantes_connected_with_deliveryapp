@@ -11,6 +11,7 @@ public class Sucursal {
     private String imagen_demostrativa_url = "";
     private int radio_de_alcanze_de_pedidos = 3500;
     private String accessCode = "";
+    private boolean abierto = false;
 
 
     public Sucursal(String nombre, Direccion direccion_absoluta, List<String> horarios, Coordenadas coordenadas,String imagen_demostrativa_url,int radio_de_alcanze_de_pedidos) {
@@ -20,6 +21,14 @@ public class Sucursal {
         this.coordenadas = coordenadas;
         this.imagen_demostrativa_url = imagen_demostrativa_url;
         this.radio_de_alcanze_de_pedidos = radio_de_alcanze_de_pedidos;
+    }
+
+    public boolean isAbierto() {
+        return abierto;
+    }
+
+    public void setAbierto(boolean abierto) {
+        this.abierto = abierto;
     }
 
     public String getAccessCode() {

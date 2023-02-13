@@ -23,6 +23,7 @@ public class Entidad_Restaurante {
     public String coordenadas_json;
     public String imagen_demostrativa_url = "";
     public int radio_de_alcanze_de_pedidos = 0;
+    public boolean abierto = false;
 
 
 

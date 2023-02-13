@@ -10,12 +10,14 @@ import android.net.Uri;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SearchView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -484,7 +486,7 @@ public class UiFunctions {
 
     }
 
-    public static void showViewToPutNegocioGeneralAccessCode(Context context,boolean cancelable) {
+    public static void showViewToPutNegocioGeneralAccessCode(Context context, boolean cancelable) {
         NegocioGeneral negocioGeneral = Constantes.negocio;
         if (context != null && negocioGeneral != null) {
 
@@ -512,13 +514,13 @@ public class UiFunctions {
                                 //validate.
                                 if (accessCode.equals(negocioGeneral.getAccess_code())) {
 
-                                   //give access to restaurante configuration page.
+                                    //give access to restaurante configuration page.
                                     Toast.makeText(context, "Acceso concedido.", Toast.LENGTH_SHORT).show();
-                                   Intent i = new Intent(context, Activity_AppRestaurante_Configuracion.class);
+                                    Intent i = new Intent(context, Activity_AppRestaurante_Configuracion.class);
 
-                                   context.startActivity(i);
+                                    context.startActivity(i);
 
-                                   bottomSheetDialog.dismiss();
+                                    bottomSheetDialog.dismiss();
 
                                 } else {
                                     etxt_accessCode.setError("Código incorrecto");
@@ -546,46 +548,84 @@ public class UiFunctions {
 
     }
 
-    public static void showBottomSheetDialogPutValue(Context context, ListenerValue listenerValue,String typeValue) {
+    public static BottomSheetDialog showBottomSheetDialogPutValue(Context context, int editText_inputType, ListenerValue listenerValue, String typeValue, String valor_anterior) {
 
-            final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
-            bottomSheetDialog.setContentView(R.layout.bottomsheetdialog_put_value);
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
+        bottomSheetDialog.setContentView(R.layout.bottomsheetdialog_put_value);
 
-            TextView textView_title = bottomSheetDialog.findViewById(R.id.textView_title);
-            textView_title.setText("Actualizar");
+        TextView textView_title = bottomSheetDialog.findViewById(R.id.textView_title);
+        textView_title.setText("Actualizar");
 
-            TextView textView_valueHeader = bottomSheetDialog.findViewById(R.id.textView_valueHeader);
-            textView_valueHeader.setText(typeValue);
+        TextView textView_valueHeader = bottomSheetDialog.findViewById(R.id.textView_valueHeader);
 
-            //Vista que oculta la ventana.
-            View view_hide = bottomSheetDialog.findViewById(R.id.view_hider);
-            view_hide.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    bottomSheetDialog.dismiss();
-                }
-            });
-            //Campo para el telefono.
-            EditText editText_value = bottomSheetDialog.findViewById(R.id.etxt_valor);
-            //Boton para guardar el nuevo telefono.
-            Button btn_guardar = bottomSheetDialog.findViewById(R.id.btn_guardar);
-            btn_guardar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String valor = editText_value.getText().toString();
+        if (textView_valueHeader != null) {
+            if (typeValue.equals("Teléfono")) {
 
-                        if (!valor.equals("")) {
+                textView_valueHeader.setText(typeValue + " (Insertar prefijo '[+] CÓDIGO DE PAÍS')");
 
-                        listenerValue.onValueChanged(valor);
-
-                        bottomSheetDialog.dismiss();
-                        } else editText_value.setError("¡Rellena este campo!");
+            } else
+                textView_valueHeader.setText(typeValue);
+        }
 
 
-                }
-            });
+        //Vista que oculta la ventana.
+        View view_hide = bottomSheetDialog.findViewById(R.id.view_hider);
+        view_hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bottomSheetDialog.dismiss();
+            }
+        });
+        //Campo para el telefono.
+        EditText editText_value = bottomSheetDialog.findViewById(R.id.etxt_valor);
+        if (editText_value != null) {
+            editText_value.setInputType(editText_inputType);
+            editText_value.setText(valor_anterior);
 
-            bottomSheetDialog.show();
+        }
+        //Switch.
+        Switch switch1 = (Switch) bottomSheetDialog.findViewById(R.id.switch1);
+        if (valor_anterior.equals("YES") || valor_anterior.equals("NO")) {
+            switch1.setVisibility(View.VISIBLE);
+            editText_value.setVisibility(View.GONE);
+            if (switch1 != null) {
+                switch1.setChecked(valor_anterior.equals("YES"));
+                switch1.setTextOff("NO");
+                switch1.setTextOn("SI");
+                switch1.setText(valor_anterior.equals("YES") ? "SI" : "NO");
+                switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                        switch1.setText(b ? "SI" : "NO");
+                    }
+                });
+            }
+        } else {
+            switch1.setVisibility(View.GONE);
+            editText_value.setVisibility(View.VISIBLE);
+        }
 
+
+        //Boton para guardar el nuevo telefono.
+        Button btn_guardar = bottomSheetDialog.findViewById(R.id.btn_guardar);
+        btn_guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String valor = editText_value.getText().toString();
+                boolean valor_booleano = switch1.isChecked();
+
+                if (!valor.equals("")) {
+
+                    listenerValue.onValueChangedAux(valor, valor_booleano, editText_value, bottomSheetDialog);
+
+                } else editText_value.setError("¡Rellena este campo!");
+
+
+            }
+        });
+
+        bottomSheetDialog.show();
+
+        return bottomSheetDialog;
     }
 }

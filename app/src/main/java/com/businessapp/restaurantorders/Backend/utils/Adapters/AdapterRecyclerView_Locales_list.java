@@ -70,6 +70,8 @@ public class AdapterRecyclerView_Locales_list  extends RecyclerView.Adapter<Adap
                 }
             });
 
+        }else{
+            holder.itemView.setVisibility(View.GONE);
         }
     }
 

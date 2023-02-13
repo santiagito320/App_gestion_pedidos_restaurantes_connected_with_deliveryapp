@@ -128,6 +128,7 @@ public class UtilFunctions {
             entidad_restaurante.imagen_demostrativa_url = sucursal.getImagen_demostrativa_url();
             entidad_restaurante.nombre = sucursal.getNombre();
             entidad_restaurante.radio_de_alcanze_de_pedidos = sucursal.getRadio_de_alcanze_de_pedidos();
+            entidad_restaurante.abierto = sucursal.isAbierto();
 
             return entidad_restaurante;
         } else return null;
@@ -202,6 +203,7 @@ public class UtilFunctions {
                     radio_de_alcanze
 
             );
+            sucursal.setAbierto(entidad_restaurante.abierto);
 
             return sucursal;
 

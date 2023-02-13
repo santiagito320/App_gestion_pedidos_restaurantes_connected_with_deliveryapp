@@ -102,10 +102,11 @@ public class Fragment_Ajustes extends Fragment implements View.OnClickListener {
         linearLayout_impresionAutomaticaDePedidos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(context != null){
+                /**if(context != null){
                     Intent i = new Intent(context, Activity_OrdersTermicPrinterConfiguration.class);
                     context.startActivity(i);
-                }
+                }**/
+                Toast.makeText(context, "Disponible para versiones posteriores", Toast.LENGTH_SHORT).show();
             }
         });
 

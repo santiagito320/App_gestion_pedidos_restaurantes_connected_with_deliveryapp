@@ -10,6 +10,9 @@ public class RestauranteServicios {
         this.entrega_a_domicilio = entrega_a_domicilio;
     }
 
+    public RestauranteServicios() {
+    }
+
     public boolean isRecojer_en_sucursal() {
         return recojer_en_sucursal;
     }
