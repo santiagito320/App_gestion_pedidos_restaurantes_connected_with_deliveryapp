@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -32,19 +33,25 @@ import com.businessapp.restaurantorders.Backend.utils.Adapters.AdapterRecyclerVi
 import com.businessapp.restaurantorders.Backend.utils.Constantes;
 import com.businessapp.restaurantorders.Backend.utils.DB.Entidades.Entidad_Restaurante;
 import com.businessapp.restaurantorders.Backend.utils.DB.Repositorios.Repositorio_Restaurante;
+import com.businessapp.restaurantorders.Backend.utils.Listeners.ListenerProducto;
 import com.businessapp.restaurantorders.Backend.utils.Listeners.ListenerValue;
 import com.businessapp.restaurantorders.Backend.utils.PedidoUtils;
 import com.businessapp.restaurantorders.Backend.utils.Pojos.Destinatario;
 import com.businessapp.restaurantorders.Backend.utils.Pojos.NegocioGeneral;
+import com.businessapp.restaurantorders.Backend.utils.Pojos.NegocioMenu;
 import com.businessapp.restaurantorders.Backend.utils.Pojos.Pedido;
+import com.businessapp.restaurantorders.Backend.utils.Pojos.Producto;
+import com.businessapp.restaurantorders.Backend.utils.Pojos.Seleccion;
 import com.businessapp.restaurantorders.Backend.utils.Pojos.Sucursal;
 import com.businessapp.restaurantorders.Backend.utils.UtilFunctions;
 import com.businessapp.restaurantorders.Frontend.Activities.Activity_AppRestaurante_Configuracion;
 import com.businessapp.restaurantorders.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UiFunctions {
@@ -627,5 +634,106 @@ public class UiFunctions {
         bottomSheetDialog.show();
 
         return bottomSheetDialog;
+    }
+
+    public static void showBottomSheetDialog_getProduct(Context context, Producto producto, ListenerProducto listenerProducto) {
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.bottom_sheet_dialog_get_product, null);
+        bottomSheetDialog.setContentView(view);
+        bottomSheetDialog.setCancelable(true);
+
+        //Views.
+        EditText etxtNombre = bottomSheetDialog.findViewById(R.id.etxt_valor_nombre);
+        EditText etxt_descripcion = bottomSheetDialog.findViewById(R.id.etxt_valor_descripcion);
+        EditText etxt_precio = bottomSheetDialog.findViewById(R.id.etxt_valor_precio);
+        TextView txt_precio = bottomSheetDialog.findViewById(R.id.textView_valueHeader_precio);
+        Button btn_opciones_y_complementos = bottomSheetDialog.findViewById(R.id.button_opciones_y_complementos);
+        Button btnGuardar = bottomSheetDialog.findViewById(R.id.btn_guardar);
+
+        if (producto == null) producto = new Producto();
+
+        if (etxtNombre != null) etxtNombre.setText(producto.getTitulo());
+        if (etxt_descripcion != null) etxt_descripcion.setText(producto.getDescripcion());
+
+        String divisa = context.getString(R.string.divisa);
+        if (etxt_precio != null) {
+            etxt_precio.setText(String.valueOf(producto.getPrecio_unitario()));
+        }
+        if (txt_precio != null) txt_precio.setText(String.format("Precio (%s)", divisa));
+
+        if (btn_opciones_y_complementos != null) {
+            btn_opciones_y_complementos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    AlertDialog.Builder dialog_list_of_opcionesYComplementos = new AlertDialog.Builder(context);
+                    dialog_list_of_opcionesYComplementos.setTitle("Opciones y complementos");
+
+                    View listOfOpcionesYComplementosView = LayoutInflater.from(context).inflate(R.layout.list_of_opciones_y_complementos, null);
+
+                    dialog_list_of_opcionesYComplementos.setCancelable(true);
+
+                    NegocioMenu negocioMenu = UtilFunctions.getMenu();
+                    if (negocioMenu != null) {
+                        List<Seleccion> menu_opcionesYcomplementos = negocioMenu.getOpciones_y_complementos();
+
+                        if(menu_opcionesYcomplementos.size() == 0) dialog_list_of_opcionesYComplementos.setMessage("No hay complementos disponibles, empieza por crear una nueva opción u complemento.");
+                        else dialog_list_of_opcionesYComplementos.setMessage("");
+
+                        final CharSequence[] menu_opcionesYcomplementos_chsq = new CharSequence[menu_opcionesYcomplementos.size()];
+
+                        for (int i = 0; i < menu_opcionesYcomplementos.size(); i++) {
+
+                            Seleccion opcionYComplemento = menu_opcionesYcomplementos.get(i);
+                            if (opcionYComplemento != null) {
+
+                                menu_opcionesYcomplementos_chsq[i] = opcionYComplemento.getTitulo();
+
+                            }
+
+                        }
+
+                        dialog_list_of_opcionesYComplementos.setItems(menu_opcionesYcomplementos_chsq, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                dialogInterface.dismiss();
+                            }
+                        });
+                        dialog_list_of_opcionesYComplementos.setPositiveButton("Nuevo complemento", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                        dialog_list_of_opcionesYComplementos.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+
+                        dialog_list_of_opcionesYComplementos.show();
+
+                    }
+
+                }
+            });
+        }
+
+        if (btnGuardar != null) {
+            btnGuardar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                }
+            });
+
+        }
+
+        //expand bottom sheet dialog.
+        BottomSheetBehavior<View> bottomSheetBehavior = BottomSheetBehavior.from((View) view.getParent());
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+        bottomSheetDialog.show();
     }
 }

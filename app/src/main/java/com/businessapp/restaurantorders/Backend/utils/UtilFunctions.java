@@ -23,6 +23,7 @@ import com.businessapp.restaurantorders.Backend.utils.Pojos.Coordenadas;
 import com.businessapp.restaurantorders.Backend.utils.Pojos.Destinatario;
 import com.businessapp.restaurantorders.Backend.utils.Pojos.Direccion;
 import com.businessapp.restaurantorders.Backend.utils.Pojos.NegocioGeneral;
+import com.businessapp.restaurantorders.Backend.utils.Pojos.NegocioMenu;
 import com.businessapp.restaurantorders.Backend.utils.Pojos.Opcion;
 import com.businessapp.restaurantorders.Backend.utils.Pojos.Pedido;
 import com.businessapp.restaurantorders.Backend.utils.Pojos.Producto;
@@ -513,5 +514,13 @@ public class UtilFunctions {
             }
         }
 
+    }
+
+    public static NegocioMenu getMenu() {
+        NegocioGeneral negocioGeneral = Constantes.negocio;
+        if(negocioGeneral != null){
+
+            return negocioGeneral.getMenu();
+        }else return null;
     }
 }
